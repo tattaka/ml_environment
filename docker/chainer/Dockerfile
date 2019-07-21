@@ -18,11 +18,12 @@ WORKDIR /root
 
 
 RUN pip install --upgrade pip==9.0.3 nltk && pip install \
-    mpi4py \
-    cupy \
-    chainer==5.1.0 \
-    chainercv==0.8.0 \
-    chainerui
+  mpi4py \
+  cupy \
+  chainer==6.2.0 \
+  chainercv==0.13 \
+  chainercv2 \
+  chainerui
 
 WORKDIR /root/ml_environment
 
