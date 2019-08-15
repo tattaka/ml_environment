@@ -27,6 +27,7 @@ RUN apt-get install -y curl grep sed dpkg && \
 WORKDIR /root
 
 RUN pip install --upgrade pip==9.0.3 && pip install \
+    shape_commentator \ #https://github.com/shiba6v/shape_commentator
     h5py \
     opencv-python \
     protobuf \
