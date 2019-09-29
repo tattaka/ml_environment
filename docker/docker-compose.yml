@@ -51,7 +51,7 @@ services:
       - ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse\/native
     network_mode: host
     command: /root/ml_environment/docker/scripts/initialize-docker-container.sh
-  chainer_v6:
+  chainer_v5:
     hostname: chainer_v5.1.0
     runtime: ${DOCKER_RUNTIME}
     privileged: true
