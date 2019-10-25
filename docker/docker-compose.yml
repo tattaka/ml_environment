@@ -78,6 +78,7 @@ services:
   pytorch:
     hostname: pytorch
     runtime: ${DOCKER_RUNTIME}
+    ipc: host
     privileged: true
     environment:
       # Display X Server GUI
@@ -102,6 +103,7 @@ services:
   pytorch_catalyst:
     hostname: pytorch_catalyst
     runtime: ${DOCKER_RUNTIME}
+    ipc: host
     privileged: true
     environment:
       # Display X Server GUI
