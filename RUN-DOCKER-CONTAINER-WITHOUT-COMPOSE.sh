@@ -28,17 +28,16 @@ if [ $DOCKER_FOUND_NAME != $CONTAINER ]; then
     docker run -itd \
         --runtime=nvidia \
         --privileged \
+        --ipc=host \
         --env DISPLAY=${DISPLAY} \
         --env QT_X11_NO_MITSHM=1 \
         --env NVIDIA_VISIBLE_DEVICES=all \
         --env NVIDIA_DRIVER_CAPABILITIES=all \
-        --env PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
         --volume ${PWD}:/root/ml_environment/ \
         --volume /tmp/.X11-unix:/tmp/.X11-unix \
-        --volume ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse\/native \
         --network=host \
         --name ${CONTAINER} \
-        "${IMAGE_REPO}:${FRAMEWORK}" 
+        "${IMAGE_REPO}:${FRAMEWORK}"
     docker exec -it ${CONTAINER} bash
 else
 # Enter the Docker container with a Bash shell.
