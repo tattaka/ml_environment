@@ -18,9 +18,9 @@ echo_err() {
 
 # Set the Docker container name from a project name (first argument).
 # If no argument is given, use the current user name as the project name.
-CONTAINER="${USER}_kaggle_cpu_1"
-IMAGE_REPO="gcr.io/kaggle-images/python"
-TAG="latest"
+CONTAINER="${USER}_pytorch_gpu_1"
+IMAGE_REPO="pytorch/pytorch"
+TAG="1.9.1-cuda11.1-cudnn8-devel"
 REFRESH_FLAG="FALSE"
 UPDATE_FLAG="FALSE"
 while getopts -- "-:run:h" OPT; do
@@ -60,7 +60,10 @@ fi
 if [ $DOCKER_FOUND_NAME != $CONTAINER ]; then
     echo "Create new container !"
     docker run -itd \
+        --gpus=all \
         --privileged \
+        --env NVIDIA_VISIBLE_DEVICES=all \
+        --env NVIDIA_DRIVER_CAPABILITIES=all \
         --volume ${PWD}/projects:/home/jupyter/projects/ \
         --network=host \
         --ipc=host \
