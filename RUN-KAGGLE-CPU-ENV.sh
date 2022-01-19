@@ -21,8 +21,6 @@ echo_err() {
 CONTAINER="${USER}_kaggle_cpu_1"
 IMAGE_REPO="gcr.io/kaggle-images/python"
 TAG="latest"
-echo "$0: CONTAINER=${CONTAINER}"
-echo "$0: IMAGE=${IMAGE_REPO}:${TAG}"
 REFRESH_FLAG="FALSE"
 UPDATE_FLAG="FALSE"
 while getopts -- "-:run:h" OPT; do
@@ -35,10 +33,12 @@ while getopts -- "-:run:h" OPT; do
             esac;;
         r) REFRESH_FLAG="TRUE";;
         u) UPDATE_FLAG="TRUE";;
-        n) CONTAINER=$OPTARG; echo $OPTARG;;
+        n) CONTAINER=$OPTARG;;
         h) usage_exit;;
     esac
 done
+echo "$0: CONTAINER=${CONTAINER}"
+echo "$0: IMAGE=${IMAGE_REPO}:${TAG}"
 if [ "$REFRESH_FLAG" = "TRUE" ]; then
     EXISTING_CONTAINER_ID=`docker ps -aq -f name=${CONTAINER}`
     if [ ! -z "${EXISTING_CONTAINER_ID}" ]; then
