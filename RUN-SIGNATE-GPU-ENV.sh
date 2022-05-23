@@ -18,9 +18,9 @@ echo_err() {
 
 # Set the Docker container name from a project name (first argument).
 # If no argument is given, use the current user name as the project name.
-CONTAINER="${USER}_pytorch_gpu_1"
-IMAGE_REPO="pytorch/pytorch"
-TAG="1.10.0-cuda11.3-cudnn8-devel"
+CONTAINER="${USER}_signate_gpu_1"
+IMAGE_REPO="signate/runtime-gpu"
+TAG="latest"
 REFRESH_FLAG="FALSE"
 UPDATE_FLAG="FALSE"
 while getopts -- "-:run:h" OPT; do
@@ -64,7 +64,7 @@ if [ $DOCKER_FOUND_NAME != $CONTAINER ]; then
         --privileged \
         --env NVIDIA_VISIBLE_DEVICES=all \
         --env NVIDIA_DRIVER_CAPABILITIES=all \
-        --volume ${PWD}/projects:/home/jupyter/projects/ \
+        --volume ${PWD}/projects:/opt/ml/projects/ \
         --network=host \
         --ipc=host \
         --name ${CONTAINER} \
