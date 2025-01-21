@@ -68,7 +68,8 @@ if [ $DOCKER_FOUND_NAME != $CONTAINER ]; then
         --network=host \
         --ipc=host \
         --name ${CONTAINER} \
-        "${IMAGE_REPO}:${TAG}"
+        "${IMAGE_REPO}:${TAG}" \
+        tail -f /dev/null
     docker exec -it ${CONTAINER} bash
 else
 # Enter the Docker container with a Bash shell.
